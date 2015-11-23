@@ -1,0 +1,27 @@
+# -*- python -*-
+from lsst.sconsUtils import scripts, targets, env
+
+# suiteparse = "/sps/lsst/Library/SuiteSparse"
+suiteparse = "SuiteSparse"
+
+for flag in ("-fexceptions", "-DNSUPERNODAL", "-DNPARTITION"):
+    env["CFLAGS"].append(flag)
+    env["CXXFLAGS"].append(flag)
+
+includes = ("SuiteSparse_config", 
+"templates", 
+"Include",
+"AMD/Include",
+"CHOLMOD/Include",
+"COLAMD/Include")
+
+for include in includes:
+    env["CFLAGS"].append("-I./SuiteSparse/%s" % include)
+
+objs = env.SourcesForSharedLibrary(Glob("#src/*.c"))
+
+libs = env.getLibs("self")
+libs.append("rt")
+targets["lib"].extend(env.SharedLibrary(env["packageName"], objs, LIBS=libs))
+
+

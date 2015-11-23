@@ -1,0 +1,1 @@
+../AMD/Source/amd_global.c

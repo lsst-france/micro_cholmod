@@ -1,0 +1,28 @@
+# -*- mode: python -*-
+# 
+
+import frogsutils
+from waflib import Context
+
+def build(bld):
+
+
+    # sources 
+    c_sources = bld.path.ant_glob('*.c')
+            
+    lib = bld.shlib(name = 'micro-cholmod', 
+                    source = c_sources ,
+                    target = 'micro-cholmod', 
+                    includes = '.  ./../templates ../AMD/Include ../COLAMD/Include',
+                    cflags = '-DNSUPERNODAL -DNPARTITION',
+                    use = ['m'])
+#                    use      = local_libs, 
+#                    uselib   = uselib,
+
+    # install the headers + starlist.cc 
+    headers  = bld.path.ant_glob('*.h')
+    print "headers",headers
+    bld.install_files('${PREFIX}/${PKG_INCDIR}', headers)
+    
+
+

@@ -1,1 +1,1 @@
-../../SuiteSparse/CHOLMOD/Cholesky/t_cholmod_solve.c
+../CHOLMOD/Cholesky/t_cholmod_solve.c

@@ -16,7 +16,7 @@ includes = ("SuiteSparse_config",
 "COLAMD/Include")
 
 for include in includes:
-    env["CFLAGS"].append("-I./SuiteSparse/%s" % include)
+    env["CFLAGS"].append("-I./%s" % include)
 
 objs = env.SourcesForSharedLibrary(Glob("#src/*.c"))
 

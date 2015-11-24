@@ -1,1 +1,1 @@
-../../SuiteSparse/CHOLMOD/Core/t_cholmod_triplet.c
+../CHOLMOD/Core/t_cholmod_triplet.c

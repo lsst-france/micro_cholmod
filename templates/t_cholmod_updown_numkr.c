@@ -1,1 +1,1 @@
-../../SuiteSparse/CHOLMOD/Modify/t_cholmod_updown_numkr.c
+../CHOLMOD/Modify/t_cholmod_updown_numkr.c

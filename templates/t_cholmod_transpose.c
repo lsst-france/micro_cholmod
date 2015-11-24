@@ -1,1 +1,1 @@
-../../SuiteSparse/CHOLMOD/Core/t_cholmod_transpose.c
+../CHOLMOD/Core/t_cholmod_transpose.c

@@ -21,7 +21,8 @@ for include in includes:
 objs = env.SourcesForSharedLibrary(Glob("#src/*.c"))
 
 libs = env.getLibs("self")
-libs.append("rt")
+# librt does not seem to be useful (neither on linux nor mac)
+#libs.append("rt")
 targets["lib"].extend(env.SharedLibrary(env["packageName"], objs, LIBS=libs))
 
 

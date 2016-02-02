@@ -1,5 +1,6 @@
 # -*- python -*-
 from lsst.sconsUtils import scripts, targets, env
+import os
 
 # suiteparse = "/sps/lsst/Library/SuiteSparse"
 suiteparse = "SuiteSparse"
@@ -22,7 +23,8 @@ objs = env.SourcesForSharedLibrary(Glob("#src/*.c"))
 
 libs = env.getLibs("self")
 # librt does not seem to be useful (neither on linux nor mac)
-#libs.append("rt")
+if 'Linux' in os.environ['OS']:
+    libs.append("rt")
 targets["lib"].extend(env.SharedLibrary(env["packageName"], objs, LIBS=libs))
 
 

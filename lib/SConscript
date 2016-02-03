@@ -5,7 +5,14 @@ import os
 # suiteparse = "/sps/lsst/Library/SuiteSparse"
 suiteparse = "SuiteSparse"
 
-for flag in ("-fexceptions", "-DNSUPERNODAL", "-DNPARTITION"):
+
+# compilation flags:
+# we do not use the supernodal factorization, and there 
+# are two flags associated to that: SUPERNODAL and PARTITION
+# We do not need the timer either, and compiling the routines
+# associated to it is troublesome because the library they reside 
+# is different on different systems.
+for flag in ("-fexceptions", "-DNSUPERNODAL", "-DNPARTITION","-DNTIMER"):
     env["CFLAGS"].append(flag)
     env["CXXFLAGS"].append(flag)
 
@@ -22,9 +29,7 @@ for include in includes:
 objs = env.SourcesForSharedLibrary(Glob("#src/*.c"))
 
 libs = env.getLibs("self")
-# librt does not seem to be useful (neither on linux nor mac)
-if 'Linux' in os.environ['OS']:
-    libs.append("rt")
+# might need librt on "old" linux environments if the "DNTIMER" CPP flag is not set 
 targets["lib"].extend(env.SharedLibrary(env["packageName"], objs, LIBS=libs))
 
 

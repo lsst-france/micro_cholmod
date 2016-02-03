@@ -15,4 +15,6 @@ This package groups C functions extracted from **SuiteSparse** to collect only C
 
 - This package is configured as an LSST package (using EUPS & Scons)
 
-                                                                                                                                                 
+                                                                                
+The selection of routines is meant to allow the user to perform a simplicial
+Cholesky factorization of a sparse matrix, possibly followed by small rank updates of the factorization, solving (factorizes) linear systems,  and nothing else. This is why this is a small subset of **SuiteSparse**. 
